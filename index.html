@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pão de Mel FAVO's</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5dc;
+        }
+
+        header {
+            background-color: #d2b48c;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-family: 'Lobster', cursive;
+            position: relative;
+        }
+
+        nav {
+            background-color: #f5deb3;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #8b4513;
+        }
+
+        .hero {
+            background-image: url('./images/hero-image.jpg');
+            /* Substitua pelo caminho da sua imagem */
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            text-align: center;
+            color: #fff;
+            font-family: 'Lobster', cursive;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero h1,
+        .hero p,
+        .hero .cta {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+        }
+
+        .hero .cta {
+            background-color: #cd853f;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .hero .cta:hover {
+            background-color: #b5651d;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .about,
+        .features,
+        .testimonials,
+        .order {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .about img,
+        .order img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .about p {
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features li {
+            position: relative;
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 0;
+            border-radius: 5px;
+            overflow: hidden;
+            color: #fff;
+            font-weight: bold;
+            height: 200px;
+        }
+
+        .features li img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(50%);
+        }
+
+        .features li div {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .testimonials blockquote {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .testimonials blockquote::before {
+            content: open-quote;
+            font-size: 3em;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: #d2b48c;
+        }
+
+        .testimonials blockquote p {
+            margin: 0;
+        }
+
+        .testimonials cite {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            color: #666;
+        }
+
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: url('./images/whatsapp-icon.png') no-repeat center center;
+            /* Substitua pelo caminho da sua imagem */
+            background-size: contain;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+        }
+
+        .whatsapp-fixed a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            display: none;
+        }
+
+        .menu a {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            nav.active a {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            nav.active .menu {
+                display: flex;
+            }
+        }
+
+        .order {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .order h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .order form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .order label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .order select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .order button {
+            background-color: #cd853f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .order button:hover {
+            background-color: #b5651d;
+        }
+
+        #order {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #order-all {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #order-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .order-form {
+            padding: 15px;
+            background-color: #d2b48c;
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #d2b48c;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer .newsletter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        footer .newsletter input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        footer .newsletter button {
+            background-color: #cd853f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        footer .newsletter button:hover {
+            background-color: #b5651d;
+        }
+
+        .btn-whatsapp {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 1px 1px 2px #888;
+            z-index: 1000;
+        }
+
+        .fa-whatsapp {
+            margin-top: 16px;
+        }
+
+        #button {
+            margin-top: 15px;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Pão de Mel FAVO's</h1>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+    <nav>
+        <div class="menu">
+            <a href="#about">Sobre</a>
+            <a href="#features">Produtos</a>
+            <a href="#testimonials">Depoimentos</a>
+            <a href="#order">Faça seu pedido</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <h1>Uma Explosão de Sabor em Cada Mordida</h1>
+        <p>Descubra o verdadeiro prazer gastronômico com o Pão de Mel FAVO's</p>
+        <a href="#order" class="cta">Experimente Agora</a>
+    </section>
+    <div class="container">
+        <section id="about" class="about">
+            <h2>Sobre o Pão de Mel FAVO's</h2>
+            <p>O Pão de Mel FAVO's é uma verdadeira experiência gourmet. Feito artesanalmente com uma massa macia e
+                aromática, cuidadosamente temperada com uma seleção especial de especiarias, cada mordida é uma explosão
+                de sabor. O recheio generoso de doce de leite feito na hora complementa perfeitamente a massa, enquanto
+                a cobertura de chocolate adiciona um toque de indulgência. Cada pão de mel é feito com ingredientes de
+                alta qualidade e muito carinho, resultando em um doce que agrada os paladares mais exigentes.</p>
+        </section>
+        <section id="features" class="features">
+            <h2>O que torna nosso Pão de Mel especial</h2>
+            <ul>
+                <li>
+                    <img src="./images/artisanal.jpg" alt="Produção Artesanal">
+                    <div><strong>Produção Artesanal:</strong> Feito à mão com amor e cuidado.</div>
+                </li>
+                <li>
+                    <img src="./images/premium-ingredients.jpg" alt="Ingredientes Premium">
+                    <div><strong>Ingredientes Premium:</strong> Ingredientes de alta qualidade e frescos.</div>
+                </li>
+                <li>
+                    <img src="./images/unique-flavor.jpg" alt="Sabor Único">
+                    <div><strong>Sabor Único:</strong> Massa macia e aromática com uma seleção especial de especiarias.
+                    </div>
+                </li>
+                <li>
+                    <img src="./images/generous-filling.jpg" alt="Recheio Generoso">
+                    <div><strong>Recheio Generoso:</strong> Doce de leite feito na hora, rico e cremoso.</div>
+                </li>
+            </ul>
+        </section>
+        <section id="testimonials" class="testimonials">
+            <h2>O que nossos clientes dizem</h2>
+            <blockquote>
+                <p>Nunca provei algo tão delicioso. O Pão de Mel FAVO's é simplesmente perfeito!</p>
+                <cite>- Ana S.</cite>
+            </blockquote>
+            <blockquote>
+                <p>A combinação de sabores é incrível. Uma verdadeira obra-prima gastronômica!</p>
+                <cite>- João M.</cite>
+            </blockquote>
+            <blockquote>
+                <p>Cada mordida é uma explosão de sabor. Recomendo a todos!</p>
+                <cite>- Beatriz L.</cite>
+            </blockquote>
+        </section>
+        <section id="order" class="order">
+            <h2 style="margin-bottom: 0;">Faça seu pedido por WhatsApp</h2>
+            <p style="margin-bottom: 25px;">*Ao finalizar o pedido, você será redirecionado ao WhatsApp</p>
+            <div id="order-all">
+                <div id="order-container">
+                    <form class="order-form">
+                        <label for="quantity">Quantidade:</label>
+                        <select name="quantity" required>
+                            <option value="">Selecione a quantidade</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <label for="flavor">Sabor:</label>
+                        <select name="flavor" required>
+                            <option value="">Selecione o sabor</option>
+                            <option value="brigadeiro">Brigadeiro</option>
+                            <option value="doce de leite">Doce de Leite</option>
+                        </select>
+                    </form>
+                </div>
+                <button type="button" id="add-order-button">Adicionar pedido</button>
+                <button type="button" style="background-color: #25d366; color: black; font-weight: bold;"
+                    id="order-button">Finalizar Pedido</button>
+            </div>
+
+        </section>
+    </div>
+    <footer>
+        <p>© 2024 Pão de Mel FAVO's. Todos os direitos reservados.</p>
+        <div>
+            <a href="tel:+55 11 93926-9294">Contato: (11) 93926-9294</a>
+        </div>
+    </footer>
+
+
+    <a class="btn-whatsapp" href="https://wa.me/5511939269294" target="_blank">
+        <i class="fa fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addOrderButton = document.getElementById('add-order-button');
+            const orderButton = document.getElementById('order-button');
+            const orderContainer = document.getElementById('order-container');
+
+            // Função para criar um novo formulário de pedido
+            function createOrderForm() {
+                const form = document.createElement('form');
+                form.classList.add('order-form');
+                form.innerHTML = `
+                    <label for="quantity">Quantidade:</label>
+                    <select name="quantity" required>
+                        <option value="">Selecione a quantidade</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <label for="flavor">Sabor:</label>
+                    <select name="flavor" required>
+                        <option value="">Selecione o sabor</option>
+                        <option value="brigadeiro">Brigadeiro</option>
+                        <option value="doce de leite">Doce de Leite</option>
+                    </select>
+                    <button type="button" class="remove-order-button" style="background-color: red; font-weight: bold;">Remover Pedido</button>
+                `;
+                return form;
+            }
+
+            // Adicionar um formulário de pedido estático por padrão
+            function addStaticOrderForm() {
+                const staticForm = createOrderForm();
+                orderContainer.appendChild(staticForm);
+            }
+
+            // Função para adicionar um novo formulário de pedido
+            function addOrderForm() {
+                const newForm = createOrderForm();
+                orderContainer.appendChild(newForm);
+            }
+
+            // Função para remover um formulário de pedido
+            function removeOrderForm(event) {
+                const targetForm = event.target.parentNode;
+                if (!targetForm.classList.contains('static-order-form')) {
+                    targetForm.remove();
+                }
+            }
+
+            // Função para obter os dados de todos os formulários de pedido
+            async function getOrderFormData() {
+                const forms = document.querySelectorAll('.order-form');
+                const orderData = [];
+                forms.forEach(form => {
+                    const quantity = form.querySelector('select[name="quantity"]').value;
+                    const flavor = form.querySelector('select[name="flavor"]').value;
+                    if (quantity && flavor) {
+                        orderData.push({ quantity, flavor });
+                    }
+                });
+                return orderData;
+            }
+
+            async function createWhatsappLink() {
+                const orderData = await getOrderFormData();
+                let message = 'Olá, gostaria de ';
+                const numOrders = orderData.length;
+                if (numOrders === 1) {
+                    message += `${orderData[0].quantity} pão(es) de mel de sabor ${orderData[0].flavor}`;
+                } else if (numOrders === 2) {
+                    message += `${orderData[0].quantity} pão(es) de mel de sabor ${orderData[0].flavor} e `;
+                    message += `${orderData[1].quantity} pão(es) de mel de sabor ${orderData[1].flavor}`;
+                } else if (numOrders > 2) {
+                    for (let i = 0; i < numOrders - 1; i++) {
+                        message += `${orderData[i].quantity} pão(es) de mel de sabor ${orderData[i].flavor}, `;
+                    }
+                    message += `e ${orderData[numOrders - 1].quantity} pão(es) de mel de sabor ${orderData[numOrders - 1].flavor}`;
+                }
+                const whatsappLink = 'https://wa.me/5511939269294?text=' + encodeURIComponent(message);
+                return whatsappLink;
+            }
+
+            // Função para enviar pedido por WhatsApp
+            async function sendOrderMessage() {
+                const whatsappLink = await createWhatsappLink();
+                window.open(whatsappLink, '_blank');
+            }
+
+            // Adicionar evento ao botão de adicionar pedido
+            addOrderButton.addEventListener('click', addOrderForm);
+
+            // Adicionar evento ao botão de fazer pedido
+            orderButton.addEventListener('click', sendOrderMessage);
+
+            // Adicionar evento de remoção dinâmica de formulário de pedido
+            orderContainer.addEventListener('click', function (event) {
+                if (event.target.classList.contains('remove-order-button')) {
+                    removeOrderForm(event);
+                }
+            });
+
+
+        });
+    </script>
+    </script>
+</body>
+
+</html>
