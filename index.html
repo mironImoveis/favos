@@ -110,7 +110,7 @@
         .features,
         .testimonials,
         .order {
-            margin: 50px 0;
+            margin: 20px 0;
             text-align: center;
         }
 
@@ -118,7 +118,7 @@
         .order img {
             max-width: 100%;
             height: auto;
-            margin-top: 20px;
+            margin-top: 30px;
             border-radius: 10px;
         }
 
@@ -134,7 +134,7 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 13px;
             justify-content: center;
             align-items: center;
         }
@@ -142,7 +142,6 @@
         .features li {
             position: relative;
             background-color: #fff;
-            margin: 10px 0;
             padding: 0;
             border-radius: 5px;
             overflow: hidden;
@@ -162,7 +161,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(30%);
+            filter: brightness(70%);
+        }
+
+        .first{
+            filter: brightness(30%) !important;
         }
 
         .features li div {
@@ -176,7 +179,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
+            margin: 10px 0;
             position: relative;
         }
 
@@ -275,7 +278,7 @@
 
         .order {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 20px;
         }
 
         .order h2 {
@@ -450,21 +453,18 @@
             <h2>O que torna nosso Pão de Mel especial</h2>
             <ul>
                 <li>
-                    <img src="./images/artisanal.jpg" alt="Produção Artesanal">
+                    <img src="./images/artisanal.jpg" class="first" alt="Produção Artesanal">
                     <div><strong>Produção Artesanal:</strong> Feito à mão com amor e cuidado</div>
                 </li>
                 <li>
                     <img src="./images/premium-ingredients.jpg" alt="Ingredientes Premium">
-                    <div><strong>Ingredientes Premium:</strong> Ingredientes de alta qualidade e frescos</div>
                 </li>
                 <li>
                     <img src="./images/unique-flavor.jpg" alt="Sabor Único">
-                    <div><strong>Sabor Único:</strong> Massa macia e aromática com uma seleção especial de especiarias
-                    </div>
+                    
                 </li>
                 <li>
                     <img src="./images/generous-filling.jpg" alt="Recheio Generoso">
-                    <div><strong>Recheio Generoso:</strong> Doce de leite feito na hora, rico e cremoso</div>
                 </li>
             </ul>
         </section>
